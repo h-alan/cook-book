@@ -3,11 +3,16 @@ import Category from "./components/Category";
 import { BrowserRouter, Link } from "react-router-dom";
 import Search from "./components/Search";
 import { styled } from "styled-components";
+import { GiForkKnifeSpoon } from "react-icons/gi";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Nav>
+          <GiForkKnifeSpoon />
+          <Logo to={'/'}> CookBook </Logo>
+        </Nav>
         <Search />
         <Category />
         <Pages />
