@@ -10,7 +10,7 @@ function Search() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    navigate('/h-alan.github.io/cook-book/searched/' + input)
+    navigate('/searched/' + input)
   };
 
   return (

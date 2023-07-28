@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Nav>
           <GiForkKnifeSpoon />
-          <Logo to={'/h-alan.github.io/cook-book'}> CookBook </Logo>
+          <Logo to={'/'}> CookBook </Logo>
         </Nav>
         <Search />
         <Category />

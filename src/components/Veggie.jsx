@@ -45,7 +45,7 @@ function Veggie() {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
-                  <Link to={'/h-alan.github.io/cook-book/recipe/' + recipe.id}>
+                  <Link to={'/recipe/' + recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title} />
                     <Gradient />
