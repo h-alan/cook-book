@@ -1,7 +1,7 @@
 {
   "name": "cook-book",
   "version": "0.1.0",
-  "homepage": "h-alan.github.io/cook-book",
+  "homepage": "https://h-alan.github.io/cook-book",
   "private": true,
   "dependencies": {
     "@splidejs/react-splide": "^0.7.12",
