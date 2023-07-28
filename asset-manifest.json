@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/%20//h-alan.github.io/cook-book/static/css/main.720fe1db.css",
-    "main.js": "/%20//h-alan.github.io/cook-book/static/js/main.dbf7ce6a.js",
-    "index.html": "/%20//h-alan.github.io/cook-book/index.html",
-    "main.720fe1db.css.map": "/%20//h-alan.github.io/cook-book/static/css/main.720fe1db.css.map",
-    "main.dbf7ce6a.js.map": "/%20//h-alan.github.io/cook-book/static/js/main.dbf7ce6a.js.map"
+    "main.css": "/h-alan.github.io/cook-book/static/css/main.720fe1db.css",
+    "main.js": "/h-alan.github.io/cook-book/static/js/main.6abea3c9.js",
+    "index.html": "/h-alan.github.io/cook-book/index.html",
+    "main.720fe1db.css.map": "/h-alan.github.io/cook-book/static/css/main.720fe1db.css.map",
+    "main.6abea3c9.js.map": "/h-alan.github.io/cook-book/static/js/main.6abea3c9.js.map"
   },
   "entrypoints": [
     "static/css/main.720fe1db.css",
-    "static/js/main.dbf7ce6a.js"
+    "static/js/main.6abea3c9.js"
   ]
 }
