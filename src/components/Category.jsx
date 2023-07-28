@@ -6,19 +6,19 @@ import { NavLink } from 'react-router-dom';
 function Category() {
   return (
     <List>
-      <SLink to={'/cuisine/italian'}>
+      <SLink to={'/h-alan.github.io/cook-book/cuisine/italian'}>
         <FaPizzaSlice />
         <h4>Italian</h4>
       </SLink>
-      <SLink to={'/cuisine/american'}>
+      <SLink to={'/h-alan.github.io/cook-book/cuisine/american'}>
         <FaHamburger />
         <h4>American</h4>
       </SLink>
-      <SLink to={'/cuisine/thai'}>
+      <SLink to={'/h-alan.github.io/cook-book/cuisine/thai'}>
         <GiNoodles />
         <h4>Thai</h4>
       </SLink>
-      <SLink to={'/cuisine/chinese'}>
+      <SLink to={'/h-alan.github.io/cook-book/cuisine/chinese'}>
         <GiChopsticks />
         <h4>Chinese</h4>
       </SLink>
