@@ -1,6 +1,6 @@
 {
   "short_name": "CookBook",
-  "name": "Create React App Sample",
+  "name": "CookBook: A Simple Recipe Site",
   "icons": [
     {
       "src": "favicon.ico",
