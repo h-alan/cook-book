@@ -45,7 +45,7 @@ function Popular() {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
-                  <Link to={'/recipe/' + recipe.id}>
+                  <Link to={'/h-alan.github.io/cook-book/recipe/' + recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title} />
                     <Gradient />
