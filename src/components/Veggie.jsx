@@ -32,12 +32,12 @@ function Veggie() {
   return (
     <div>
       <Wrapper>
-        <h3>Our Vegetarian Picks</h3>
+        <RedText>Our<span className="red-text"> Vegetarian</span> Picks</RedText>
 
         <Splide options={{
           perPage: 3,
           arrows: false,
-          pagination: false,
+          pagination: true,
           drag: 'free',
           gap: '3rem'
         }}>
@@ -103,6 +103,12 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+`
+
+const RedText = styled.h3`
+  .red-text{
+    color: #f27121;
+  }  
 `
 
 export default Veggie

@@ -25,19 +25,18 @@ function Popular() {
 
       localStorage.setItem('popular', JSON.stringify(data.recipes))
       setPopular(data.recipes);
-      console.log(data.recipes)
     }
   };
 
   return (
     <div>
       <Wrapper>
-        <h3>Popular Picks</h3>
+        <RedText><span className="red-text">Popular</span> Picks</RedText>
 
         <Splide options={{
           perPage: 4,
           arrows: false,
-          pagination: false,
+          pagination: true,
           drag: 'free',
           gap: '3rem'
         }}>
@@ -103,6 +102,12 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+`
+
+const RedText = styled.h3`
+  .red-text{
+    color: #f27121;
+  }  
 `
 
 export default Popular
