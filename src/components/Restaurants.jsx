@@ -17,39 +17,23 @@ function Restaurants() {
   const getRestaurants = async () => {
 
     const check = localStorage.getItem('restaurants');
-    //const randomInt = Math.floor(Math.random() * cuisines.length);
-    //const dailyRandom = cuisines[randomInt];
 
     if (check) {
-      setRestaurants(JSON.parse(check));
+      setRestaurants(JSON.parse(check).sort(() => .5 - Math.random()));
     } else {
       const api = await fetch(
         `https://api.spoonacular.com/food/restaurants/search?apiKey=${process.env.REACT_APP_SPOONACULAR_API}`);
       const data = await api.json();
 
-      localStorage.setItem('restaurants', JSON.stringify(data.restaurants))
+      localStorage.setItem('restaurants', JSON.stringify(data.restaurants));
       setRestaurants(data.restaurants);
     }
-  };
-
-  function getRandom(n) {
-    var result = new Array(n),
-      len = restaurants.length,
-      taken = new Array(len);
-    if (n > len)
-      throw new RangeError("getRandom: more elements taken than available");
-    while (n--) {
-      var x = Math.floor(Math.random() * len);
-      result[n] = restaurants[x in taken ? taken[x] : x];
-      taken[x] = --len in taken ? taken[len] : len;
-    }
-    return result;
   };
 
   return (
     <div>
       <Wrapper>
-        <RedText>Daily<span className="red-text"> Restaurants</span></RedText>
+        <RedText>Find a New<span className="red-text"> Restaurant</span></RedText>
 
         {restaurants.length > 0 ?
           <Splide options={{
@@ -59,7 +43,7 @@ function Restaurants() {
             drag: 'free',
             gap: '3rem'
           }}>
-            {getRandom(5).map((rest) => {
+            {restaurants.slice(0, 11).map((rest) => {
               return (
                 <SplideSlide key={rest._id}>
                   <Card>
@@ -89,6 +73,7 @@ const Card = styled.div`
   border-radius: 1rem;
   overflow: visible;
   position: relative;
+  transition: 0.4s;
 
   img{
     border-radius: 1rem;
@@ -97,6 +82,11 @@ const Card = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &:hover{
+    padding-top: 1.5rem;
+    transition: 0.4s;
   }
 `;
 

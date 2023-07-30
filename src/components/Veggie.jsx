@@ -3,13 +3,49 @@ import { styled } from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import '@splidejs/splide/dist/css/splide.min.css';
 import { Link } from "react-router-dom";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 function Veggie() {
 
   const [veggie, setVeggie] = useState([])
+  const [favorites, setFavorites] = useState([]);
+
+  const handleLocalStorage = () => {
+    const check = window.localStorage.getItem('favorites');
+
+    if (check) {
+      setFavorites(JSON.parse(check));
+    }
+    else {
+      const initial = JSON.stringify([]);
+      window.localStorage.setItem('favorites', initial);
+      window.dispatchEvent(new Event("storage"));
+    }
+  }
+
+  function addId(id) {
+    const data = JSON.parse(window.localStorage.getItem('favorites'));
+    data.push(id);
+    setFavorites(data);
+    window.localStorage.setItem('favorites', JSON.stringify(data));
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  function removeId(id) {
+    const data = JSON.parse(window.localStorage.getItem('favorites'));
+    const index = data.indexOf(id);
+    data.splice(index, 1);
+    setFavorites(data);
+    window.localStorage.setItem('favorites', JSON.stringify(data));
+    window.dispatchEvent(new Event("storage"));
+  };
 
   useEffect(() => {
     getVeggie();
+    window.addEventListener('storage', () => {
+      setFavorites(JSON.parse(window.localStorage.getItem('favorites')));
+    })
+    handleLocalStorage();
   }, []);
 
   const getVeggie = async () => {
@@ -45,6 +81,11 @@ function Veggie() {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
+                  {favorites.includes(recipe.id)
+                    ? <FaStar onClick={() => removeId(recipe.id)} />
+                    : <FaRegStar onClick={() => addId(recipe.id)} />
+                  }
+
                   <Link to={'/cook-book/recipe/' + recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title} />
@@ -94,7 +135,32 @@ const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition-duration: 0.2s;
   }
+
+  svg{
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    display: none;
+  }
+
+  &:hover{
+    p{
+      padding-bottom: 1rem;
+      transition-duration: 0.2s;
+    }
+
+    svg{
+      display: flex;
+      color: white;
+      z-index: 99 !important;
+    }
+
+    svg:hover{
+      color: #ffcf4d;
+    }
 `;
 
 const Gradient = styled.div`
@@ -103,6 +169,11 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+
+  &:hover{
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7));
+    transition-duration: 0.2s;
+  }
 `
 
 const RedText = styled.h3`

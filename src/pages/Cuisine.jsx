@@ -2,11 +2,43 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { Link, useParams } from 'react-router-dom'
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 function Cuisine() {
 
-  const [cuisine, setCuisine] = useState([]);
   let params = useParams();
+  const [cuisine, setCuisine] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  const handleLocalStorage = () => {
+    const check = window.localStorage.getItem('favorites');
+
+    if (check) {
+      setFavorites(JSON.parse(check));
+    }
+    else {
+      const initial = JSON.stringify([]);
+      window.localStorage.setItem('favorites', initial);
+      window.dispatchEvent(new Event("storage"));
+    }
+  }
+
+  function addId(id) {
+    const data = JSON.parse(window.localStorage.getItem('favorites'));
+    data.push(id);
+    setFavorites(data);
+    window.localStorage.setItem('favorites', JSON.stringify(data));
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  function removeId(id) {
+    const data = JSON.parse(window.localStorage.getItem('favorites'));
+    const index = data.indexOf(id);
+    data.splice(index, 1);
+    setFavorites(data);
+    window.localStorage.setItem('favorites', JSON.stringify(data));
+    window.dispatchEvent(new Event("storage"));
+  };
 
   const getCuisine = async (name) => {
     const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API}&cuisine=${name}&number=9`)
@@ -16,6 +48,10 @@ function Cuisine() {
 
   useEffect(() => {
     getCuisine(params.type);
+    window.addEventListener('storage', () => {
+      setFavorites(JSON.parse(window.localStorage.getItem('favorites')));
+    })
+    handleLocalStorage();
   }, [params.type]);
 
   return (
@@ -23,6 +59,11 @@ function Cuisine() {
       {cuisine.map((item) => {
         return (
           <Card key={item.id}>
+            {favorites.includes(item.id)
+              ? <FaStar onClick={() => removeId(item.id)} />
+              : <FaRegStar onClick={() => addId(item.id)} />
+            }
+
             <Link to={'/cook-book/recipe/' + item.id}>
               <img src={item.image} alt="" />
               <h4>{item.title}</h4>
@@ -41,6 +82,11 @@ const Grid = styled(motion.div)`
 `
 
 const Card = styled.div`
+  border-top-left-radius: 3rem;
+  border-top-right-radius: 3rem;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+
   img{
     width: 100%;
     border-radius: 2rem;
@@ -51,6 +97,31 @@ const Card = styled.div`
   h4{
     text-align: center;
     padding: 1rem;
+  }
+
+  svg{
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    display: none;
+  }
+
+  &:hover{
+    background: #f27121;
+
+    h4{
+      color: white;
+    }
+
+    svg{
+      display: flex;
+      color: white;
+      z-index: 99 !important;
+    }
+
+    svg:hover{
+      color: #ffcf4d;
   }
 `
 

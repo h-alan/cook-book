@@ -2,7 +2,6 @@ import { styled } from "styled-components"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 function RestaurantDetails() {
@@ -31,9 +30,9 @@ function RestaurantDetails() {
   const getStarRating = () => {
     // calculate how many stars needed
     const value = Math.round(details.weighted_rating_value * 2) / 2;
-    const stars = Array.from(Array(5).slice(value - 1), (_, i) => <FaStar key={i} />);
+    const stars = Array.from(Array(5).slice(0, value), (_, i) => <FaStar key={i} />);
     if (value % 1 !== 0) // if value is a decimal, add a half star
-      stars[Math.floor(value)] = <FaStarHalfAlt />;
+      stars[Math.floor(value)] = <FaStarHalfAlt key={stars.length} />;
 
     // add empty stars to fill array
     while (stars.length < 5) {

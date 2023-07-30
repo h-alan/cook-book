@@ -5,11 +5,37 @@ import { BrowserRouter, Link } from "react-router-dom";
 import Search from "./components/Search";
 import { styled } from "styled-components";
 import { GiForkKnifeSpoon } from "react-icons/gi";
-import { AiOutlineStar } from "react-icons/ai"
+import { FaRegStar, FaStar } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 function App() {
+
+  const [favorites, setFavorites] = useState([]);
+
+  const handleLocalStorage = () => {
+    const check = window.localStorage.getItem('favorites');
+
+    if (check) {
+      setFavorites(JSON.parse(check));
+    }
+    else {
+      const initial = JSON.stringify([]);
+      window.localStorage.setItem('favorites', initial);
+      window.dispatchEvent(new Event("storage"));
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      console.log("Change to local storage! APP");
+      setFavorites(JSON.parse(window.localStorage.getItem('favorites')));
+    })
+    handleLocalStorage();
+  }, []);
+
   return (
     <div>
+      {favorites}
       <BrowserRouter >
         <Display>
           <Nav>
@@ -19,7 +45,7 @@ function App() {
           <Top>
             <Link to={'/cook-book/'} style={{ textDecoration: 'none' }}>
               <Favorites>
-                <AiOutlineStar />
+                <FaRegStar />
                 Favorites
               </Favorites>
             </Link>
@@ -35,7 +61,7 @@ function App() {
 
 const Logo = styled(Link)`
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   font-family: 'Lobster Two', cursive;
 `
@@ -81,6 +107,10 @@ const Favorites = styled.button`
     background-color: #f27121;
     border: 2px solid #f27121;
     color: white;
+  }
+
+  svg{
+    font-size: 1.6rem;
   }
 `
 
