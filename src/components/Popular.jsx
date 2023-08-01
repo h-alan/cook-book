@@ -23,17 +23,17 @@ function Popular() {
     }
   }
 
-  function addId(id) {
+  function addRecipe(recipe) {
     const data = JSON.parse(window.localStorage.getItem('favorites'));
-    data.push(id);
+    data.push(recipe);
     setFavorites(data);
     window.localStorage.setItem('favorites', JSON.stringify(data));
     window.dispatchEvent(new Event("storage"));
   };
 
-  function removeId(id) {
+  function removeRecipe(recipe) {
     const data = JSON.parse(window.localStorage.getItem('favorites'));
-    const index = data.indexOf(id);
+    const index = data.findIndex(elem => elem.id === recipe.id);
     data.splice(index, 1);
     setFavorites(data);
     window.localStorage.setItem('favorites', JSON.stringify(data));
@@ -79,9 +79,9 @@ function Popular() {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
-                  {favorites.includes(recipe.id)
-                    ? <FaStar onClick={() => removeId(recipe.id)} />
-                    : <FaRegStar onClick={() => addId(recipe.id)} />
+                  {favorites.some(elem => elem.id === recipe.id)
+                    ? <FaStar onClick={() => removeRecipe(recipe)} />
+                    : <FaRegStar onClick={() => addRecipe(recipe)} />
                   }
 
                   <Link to={'/cook-book/recipe/' + recipe.id}>

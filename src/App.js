@@ -35,7 +35,14 @@ function App() {
 
   return (
     <div>
-      {favorites}
+      {favorites.map((recipe) => {
+        return (
+          <div>
+            {recipe.title}
+            <img style={{ width: "1rem", height: "1rem" }} src={recipe.image} alt={recipe.title} />
+          </div>
+        );
+      })}
       <BrowserRouter >
         <Display>
           <Nav>

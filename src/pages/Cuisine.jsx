@@ -23,17 +23,17 @@ function Cuisine() {
     }
   }
 
-  function addId(id) {
+  function addRecipe(recipe) {
     const data = JSON.parse(window.localStorage.getItem('favorites'));
-    data.push(id);
+    data.push(recipe);
     setFavorites(data);
     window.localStorage.setItem('favorites', JSON.stringify(data));
     window.dispatchEvent(new Event("storage"));
   };
 
-  function removeId(id) {
+  function removeRecipe(recipe) {
     const data = JSON.parse(window.localStorage.getItem('favorites'));
-    const index = data.indexOf(id);
+    const index = data.findIndex(elem => elem.id === recipe.id);
     data.splice(index, 1);
     setFavorites(data);
     window.localStorage.setItem('favorites', JSON.stringify(data));
@@ -47,11 +47,14 @@ function Cuisine() {
   };
 
   useEffect(() => {
-    getCuisine(params.type);
     window.addEventListener('storage', () => {
       setFavorites(JSON.parse(window.localStorage.getItem('favorites')));
     })
     handleLocalStorage();
+  }, [])
+
+  useEffect(() => {
+    getCuisine(params.type);
   }, [params.type]);
 
   return (
@@ -59,9 +62,9 @@ function Cuisine() {
       {cuisine.map((item) => {
         return (
           <Card key={item.id}>
-            {favorites.includes(item.id)
-              ? <FaStar onClick={() => removeId(item.id)} />
-              : <FaRegStar onClick={() => addId(item.id)} />
+            {favorites.some(elem => elem.id === item.id)
+              ? <FaStar onClick={() => removeRecipe(item)} />
+              : <FaRegStar onClick={() => addRecipe(item)} />
             }
 
             <Link to={'/cook-book/recipe/' + item.id}>
@@ -100,11 +103,14 @@ const Card = styled.div`
   }
 
   svg{
-    font-size: 2rem;
-    top: 1rem;
-    right: 1rem;
+    font-size: 3rem;
     position: absolute;
-    display: none;
+    display: block;
+    padding-top: 1rem;
+  }
+
+  svg:hover{
+    color: #ffcf4d;
   }
 
   &:hover{
@@ -113,15 +119,6 @@ const Card = styled.div`
     h4{
       color: white;
     }
-
-    svg{
-      display: flex;
-      color: white;
-      z-index: 99 !important;
-    }
-
-    svg:hover{
-      color: #ffcf4d;
   }
 `
 
