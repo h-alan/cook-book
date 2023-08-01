@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cook-book/static/css/main.720fe1db.css",
-    "main.js": "/cook-book/static/js/main.6dc7271f.js",
+    "main.css": "/cook-book/static/css/main.78ca032a.css",
+    "main.js": "/cook-book/static/js/main.7b8f05c5.js",
     "index.html": "/cook-book/index.html",
-    "main.720fe1db.css.map": "/cook-book/static/css/main.720fe1db.css.map",
-    "main.6dc7271f.js.map": "/cook-book/static/js/main.6dc7271f.js.map"
+    "main.78ca032a.css.map": "/cook-book/static/css/main.78ca032a.css.map",
+    "main.7b8f05c5.js.map": "/cook-book/static/js/main.7b8f05c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.720fe1db.css",
-    "static/js/main.6dc7271f.js"
+    "static/css/main.78ca032a.css",
+    "static/js/main.7b8f05c5.js"
   ]
 }
