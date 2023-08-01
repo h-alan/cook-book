@@ -110,6 +110,10 @@ function App() {
           <Category />
           <Pages />
         </div>
+        <Footer>
+          <h1>Questions? Contact us at <u>cookbooksite2@gmail.com</u></h1>
+          <h3>Made using <a href="https://spoonacular.com/food-api">Spoonacular API</a></h3>
+        </Footer>
       </MainApp>
     </BrowserRouter >
   );
@@ -118,6 +122,29 @@ function App() {
 const MainApp = styled.div`
   .barActive{
     display: block;
+  }
+`
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #f27121;
+
+  h1{
+    padding-top: 3rem;
+    color: white;
+  }
+
+  h3{
+    padding-top: 1rem;
+    color: white;
+  }
+
+  a{
+    text-decoration: none;
+    color: #a6f78d;
   }
 `
 
