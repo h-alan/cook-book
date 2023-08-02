@@ -112,7 +112,7 @@ function App() {
         </div>
         <Footer>
           <h2>Questions? Contact us at <u>cookbooksite2@gmail.com</u></h2>
-          <h3>Made using <a href="https://spoonacular.com/food-api">Spoonacular API</a></h3>
+          <h4>Made using <a href="https://spoonacular.com/food-api">Spoonacular API</a></h4>
         </Footer>
       </MainApp>
     </BrowserRouter >
@@ -137,8 +137,9 @@ const Footer = styled.div`
     color: white;
   }
 
-  h3{
+  h4{
     padding-top: 1rem;
+    padding-bottom: 3rem;
     color: white;
   }
 
