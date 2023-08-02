@@ -39,7 +39,7 @@ function Restaurants() {
           <Splide options={{
             perPage: 4,
             arrows: false,
-            pagination: false,
+            pagination: true,
             drag: 'free',
             gap: '3rem'
           }}>

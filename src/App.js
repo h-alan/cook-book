@@ -111,7 +111,7 @@ function App() {
           <Pages />
         </div>
         <Footer>
-          <h1>Questions? Contact us at <u>cookbooksite2@gmail.com</u></h1>
+          <h2>Questions? Contact us at <u>cookbooksite2@gmail.com</u></h2>
           <h3>Made using <a href="https://spoonacular.com/food-api">Spoonacular API</a></h3>
         </Footer>
       </MainApp>
@@ -132,7 +132,7 @@ const Footer = styled.div`
   flex-direction: column;
   background: #f27121;
 
-  h1{
+  h2{
     padding-top: 3rem;
     color: white;
   }

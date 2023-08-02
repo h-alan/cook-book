@@ -70,7 +70,7 @@ function Popular() {
         <RedText><span className="red-text">Popular</span> Picks</RedText>
         <Splide options={{
           perPage: 4,
-          arrows: false,
+          arrows: true,
           pagination: false,
           drag: 'free',
           gap: '3rem'
